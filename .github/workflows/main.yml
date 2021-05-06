@@ -1,0 +1,20 @@
+name : actiontest
+
+on : push
+
+env :
+  IMAGE_NAME : julienmaalouf/action_test:test
+  
+jobs :
+  build:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - uses :  actions/checkout@v2
+      - name :  Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name : Push step
+        run: |
+          docker login -u ${{secret.DOCKERHUB_USERNAME}} -p ${{secret.DOCKERHUB_TOKEN}}
+          docker push $IMAGE_NAME
