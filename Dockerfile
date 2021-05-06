@@ -13,11 +13,3 @@ apt-get install -y python && \
 LC_ALL=C.UTF-8 youtube-dl https://www.youtube.com/watch?v=e1QHKf31Hnc && \
 export LC_ALL=C.UTF-8 && \
 youtube-dl https://imgur.com/JY5tHqr
-
-
-
-# # Copy init script, set workdir & entrypoint
-COPY init /init
-WORKDIR /workdir
-ENTRYPOINT ["/init"]
-
